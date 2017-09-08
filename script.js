@@ -184,8 +184,8 @@ Board.prototype.numberOfConsecutive = function() {
     return ticker.result();
 };
 
-// Positive is good for red.
-// Negative is good for yellow.
+// Positivo é bom para o vermelho.
+// Negativo é bom para amarelo.
 Board.prototype.evaluate = function() {
     var cons = this.numberOfConsecutive();
 
@@ -207,7 +207,7 @@ Board.prototype.miniMax = function(color, depth) {
         return score;
     }
 
-    // Computer plays, maximize!
+   // O computador joga, maximize!
     if(color == red) {
         var bestScore = null;
 
@@ -222,7 +222,7 @@ Board.prototype.miniMax = function(color, depth) {
         }
         return bestScore;
     }
-    // User plays, minimize!
+    // O usuário joga, minimize!
     else {
         var minScore = null;
 
@@ -274,14 +274,14 @@ var mouseClick = function(message, boardElem) {
     var board = new Board();
     var userHasTurn = true;
     var gameEnded = false;
-    var lowerDepth = document.getElementById("lowerDepth");
+    var miniMaxComPoda = document.getElementById("miniMaxComPoda");
 
     function checkWinner() {
         var winner = board.hasWinner();
 
         if(winner) {
             board.render();
-            message.textContent = "We hebben een winnaar! Gefeliciteerd " + (winner == "yellow" ? "gebruiker." : "computer.");
+            message.textContent = "Temos um vencedor! Parabéns " + (winner == "yellow" ? "usuario." : "computador.");
             boardElem.style.borderColor = winner;
             gameEnded = true;
             return true;
@@ -301,7 +301,7 @@ var mouseClick = function(message, boardElem) {
 
         if(!played) return;
 
-        message.innerHTML = "Turn: computer";
+        message.innerHTML = "Jogador da vez: computador";
         board.render();
 
         setTimeout(function() {
@@ -310,8 +310,8 @@ var mouseClick = function(message, boardElem) {
                     
                 board.render();
 
-                board.autoPlay(red, lowerDepth.checked ? 5 : 6);
-                message.innerHTML = "Turn: user";
+                board.autoPlay(red, miniMaxComPoda.checked ? 2 : 6);
+                message.innerHTML = "Jogador da vez: usuário";
 
                 if(!checkWinner(message)) board.render();
             }
